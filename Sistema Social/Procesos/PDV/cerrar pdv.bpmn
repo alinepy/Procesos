@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="1.8.2">
+  <bpmn:collaboration id="Collaboration_19xnzah">
+    <bpmn:participant id="Participant_14y6s12" name="Proceso de Cierre Punto de Venta" processRef="Process_1kkxsyd" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_1kkxsyd" isExecutable="false">
+    <bpmn:sequenceFlow id="SequenceFlow_1g5mvu2" sourceRef="StartEvent_1kpcrr1" targetRef="UserTask_0sguf5w" />
+    <bpmn:startEvent id="StartEvent_1kpcrr1" name="Fin del &#10;Expediente">
+      <bpmn:outgoing>SequenceFlow_1g5mvu2</bpmn:outgoing>
+      <bpmn:timerEventDefinition />
+    </bpmn:startEvent>
+    <bpmn:endEvent id="EndEvent_1mk3qxd" name="PdV Cerrado">
+      <bpmn:incoming>SequenceFlow_0q04aqu</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_0c1zrh4" sourceRef="UserTask_19pugxq" targetRef="ManualTask_06kt2z6" />
+    <bpmn:userTask id="UserTask_19pugxq" name="Cerrar Cajas">
+      <bpmn:incoming>SequenceFlow_0gofo64</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0c1zrh4</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:manualTask id="UserTask_0sguf5w" name="Cerrar Sesion">
+      <bpmn:incoming>SequenceFlow_1g5mvu2</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0gofo64</bpmn:outgoing>
+    </bpmn:manualTask>
+    <bpmn:sequenceFlow id="SequenceFlow_0gofo64" sourceRef="UserTask_0sguf5w" targetRef="UserTask_19pugxq" />
+    <bpmn:sequenceFlow id="SequenceFlow_0q04aqu" sourceRef="ManualTask_06kt2z6" targetRef="EndEvent_1mk3qxd" />
+    <bpmn:manualTask id="ManualTask_06kt2z6" name="Validar y Contabilizar Asientos">
+      <bpmn:incoming>SequenceFlow_0c1zrh4</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0q04aqu</bpmn:outgoing>
+    </bpmn:manualTask>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_19xnzah">
+      <bpmndi:BPMNShape id="Participant_14y6s12_di" bpmnElement="Participant_14y6s12">
+        <dc:Bounds x="369" y="89" width="612" height="146" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1g5mvu2_di" bpmnElement="SequenceFlow_1g5mvu2">
+        <di:waypoint xsi:type="dc:Point" x="449" y="168" />
+        <di:waypoint xsi:type="dc:Point" x="487" y="168" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="423" y="153" width="90" height="0" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="StartEvent_0x6ffcz_di" bpmnElement="StartEvent_1kpcrr1">
+        <dc:Bounds x="413" y="150" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="404" y="186" width="54" height="24" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_1mk3qxd_di" bpmnElement="EndEvent_1mk3qxd" bioc:stroke="black" bioc:fill="red">
+        <dc:Bounds x="911" y="150" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="898" y="186" width="63" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="UserTask_19pugxq_di" bpmnElement="UserTask_19pugxq" bioc:stroke="black" bioc:fill="#BBDEFB">
+        <dc:Bounds x="634" y="128" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0c1zrh4_di" bpmnElement="SequenceFlow_0c1zrh4">
+        <di:waypoint xsi:type="dc:Point" x="734" y="168" />
+        <di:waypoint xsi:type="dc:Point" x="771" y="168" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="752.5" y="147" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ManualTask_0rfuhm8_di" bpmnElement="UserTask_0sguf5w" bioc:stroke="black" bioc:fill="#BBDEFB">
+        <dc:Bounds x="487" y="128" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0gofo64_di" bpmnElement="SequenceFlow_0gofo64">
+        <di:waypoint xsi:type="dc:Point" x="587" y="168" />
+        <di:waypoint xsi:type="dc:Point" x="634" y="168" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="610.5" y="147" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ManualTask_06kt2z6_di" bpmnElement="ManualTask_06kt2z6" bioc:stroke="black" bioc:fill="#BBDEFB">
+        <dc:Bounds x="771" y="128" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0q04aqu_di" bpmnElement="SequenceFlow_0q04aqu">
+        <di:waypoint xsi:type="dc:Point" x="871" y="168" />
+        <di:waypoint xsi:type="dc:Point" x="911" y="168" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="891" y="147" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

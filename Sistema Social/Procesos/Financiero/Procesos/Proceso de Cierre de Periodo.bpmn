@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="1.8.2">
+  <bpmn:collaboration id="Collaboration_1rpz5yv">
+    <bpmn:participant id="Participant_0t8uork" name="Materias de Expediente" processRef="Process_09t132r" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_09t132r" isExecutable="false">
+    <bpmn:startEvent id="StartEvent_0wf2lzz" name="Dia 1 del Mes">
+      <bpmn:outgoing>SequenceFlow_05vesu9</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:subProcess id="UserTask_01qrx2x" name="Cerrar y Abrir Extracto Bancario">
+      <bpmn:incoming>SequenceFlow_05vesu9</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0g7juo1</bpmn:outgoing>
+    </bpmn:subProcess>
+    <bpmn:subProcess id="SubProcess_0oim2l3" name="Generar Nominas de Funcionario">
+      <bpmn:incoming>SequenceFlow_0g7juo1</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1wn53ww</bpmn:outgoing>
+    </bpmn:subProcess>
+    <bpmn:sequenceFlow id="SequenceFlow_05vesu9" sourceRef="StartEvent_0wf2lzz" targetRef="UserTask_01qrx2x" />
+    <bpmn:sequenceFlow id="SequenceFlow_0g7juo1" sourceRef="UserTask_01qrx2x" targetRef="SubProcess_0oim2l3" />
+    <bpmn:sequenceFlow id="SequenceFlow_1wn53ww" sourceRef="SubProcess_0oim2l3" targetRef="SubProcess_0veytgp" />
+    <bpmn:subProcess id="SubProcess_1se55ea" name="Informes de Cierre">
+      <bpmn:incoming>SequenceFlow_0oa8bq5</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0h04p5h</bpmn:outgoing>
+    </bpmn:subProcess>
+    <bpmn:sequenceFlow id="SequenceFlow_0oa8bq5" sourceRef="SubProcess_0veytgp" targetRef="SubProcess_1se55ea" />
+    <bpmn:sequenceFlow id="SequenceFlow_0h04p5h" sourceRef="SubProcess_1se55ea" targetRef="EndEvent_08b0upv" />
+    <bpmn:endEvent id="EndEvent_08b0upv" name="Porceso Concluido">
+      <bpmn:incoming>SequenceFlow_0h04p5h</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:userTask id="SubProcess_0veytgp" name="Cerrar un periodo Contable (mes)">
+      <bpmn:incoming>SequenceFlow_1wn53ww</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0oa8bq5</bpmn:outgoing>
+    </bpmn:userTask>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1rpz5yv">
+      <bpmndi:BPMNShape id="Participant_0t8uork_di" bpmnElement="Participant_0t8uork">
+        <dc:Bounds x="146" y="406" width="871" height="184" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="StartEvent_0wf2lzz_di" bpmnElement="StartEvent_0wf2lzz" bioc:stroke="black" bioc:fill="green">
+        <dc:Bounds x="215" y="463" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="201" y="505" width="66" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_08b0upv_di" bpmnElement="EndEvent_08b0upv" bioc:stroke="black" bioc:fill="red">
+        <dc:Bounds x="949" y="463" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="943" y="509" width="48" height="24" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_05vesu9_di" bpmnElement="SequenceFlow_05vesu9">
+        <di:waypoint xsi:type="dc:Point" x="251" y="481" />
+        <di:waypoint xsi:type="dc:Point" x="314" y="481" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="282.5" y="460" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="SubProcess_0aik4yf_di" bpmnElement="UserTask_01qrx2x" bioc:stroke="black" bioc:fill="#BBDEFB">
+        <dc:Bounds x="314" y="441" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="SubProcess_0oim2l3_di" bpmnElement="SubProcess_0oim2l3" bioc:stroke="black" bioc:fill="#BBDEFB">
+        <dc:Bounds x="468" y="441" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0g7juo1_di" bpmnElement="SequenceFlow_0g7juo1">
+        <di:waypoint xsi:type="dc:Point" x="414" y="481" />
+        <di:waypoint xsi:type="dc:Point" x="468" y="481" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="441" y="460" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1wn53ww_di" bpmnElement="SequenceFlow_1wn53ww">
+        <di:waypoint xsi:type="dc:Point" x="568" y="481" />
+        <di:waypoint xsi:type="dc:Point" x="640" y="481" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="559" y="460" width="90" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0oa8bq5_di" bpmnElement="SequenceFlow_0oa8bq5">
+        <di:waypoint xsi:type="dc:Point" x="740" y="481" />
+        <di:waypoint xsi:type="dc:Point" x="801" y="481" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="725.5" y="460" width="90" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="SubProcess_1se55ea_di" bpmnElement="SubProcess_1se55ea" bioc:stroke="black" bioc:fill="#BBDEFB">
+        <dc:Bounds x="801" y="441" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0h04p5h_di" bpmnElement="SequenceFlow_0h04p5h">
+        <di:waypoint xsi:type="dc:Point" x="901" y="481" />
+        <di:waypoint xsi:type="dc:Point" x="949" y="481" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="925" y="460" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="UserTask_0l49uhn_di" bpmnElement="SubProcess_0veytgp" bioc:stroke="black" bioc:fill="#BBDEFB">
+        <dc:Bounds x="640" y="441" width="100" height="80" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

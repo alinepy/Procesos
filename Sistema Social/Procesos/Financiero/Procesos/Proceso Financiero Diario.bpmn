@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="1.8.2">
+  <bpmn:collaboration id="Collaboration_1fy6lx5">
+    <bpmn:participant id="Participant_1fe8ltr" name="Proceso Diario" processRef="Process_1" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_1" isExecutable="false">
+    <bpmn:startEvent id="StartEvent_1" name="Inicio del Expediente">
+      <bpmn:outgoing>SequenceFlow_1kcdmrj</bpmn:outgoing>
+      <bpmn:timerEventDefinition />
+    </bpmn:startEvent>
+    <bpmn:parallelGateway id="ExclusiveGateway_0qx9eir" name="">
+      <bpmn:incoming>SequenceFlow_1vjoh0m</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1aec4bw</bpmn:outgoing>
+      <bpmn:outgoing>SequenceFlow_1ofvwts</bpmn:outgoing>
+    </bpmn:parallelGateway>
+    <bpmn:subProcess id="UserTask_185pmm6" name="Abrir el Caja">
+      <bpmn:incoming>SequenceFlow_1kcdmrj</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0uzwmkx</bpmn:outgoing>
+    </bpmn:subProcess>
+    <bpmn:subProcess id="SubProcess_0xwkhz4" name="Conciliaciones Bancarias">
+      <bpmn:incoming>SequenceFlow_0uzwmkx</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1unejtx</bpmn:outgoing>
+    </bpmn:subProcess>
+    <bpmn:subProcess id="SubProcess_05te7ni" name="Analizar Previsión Financiera">
+      <bpmn:incoming>SequenceFlow_1unejtx</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1g1urlg</bpmn:outgoing>
+    </bpmn:subProcess>
+    <bpmn:subProcess id="SubProcess_0dygd69" name="Realizar Operaciones Financieras">
+      <bpmn:incoming>SequenceFlow_1g1urlg</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1vjoh0m</bpmn:outgoing>
+    </bpmn:subProcess>
+    <bpmn:sequenceFlow id="SequenceFlow_1kcdmrj" sourceRef="StartEvent_1" targetRef="UserTask_185pmm6" />
+    <bpmn:sequenceFlow id="SequenceFlow_1qn1vfn" name="Fin de&#10; Expediente" sourceRef="IntermediateThrowEvent_0qvudw8" targetRef="SubProcess_02ydi7p" />
+    <bpmn:sequenceFlow id="SequenceFlow_1vjoh0m" sourceRef="SubProcess_0dygd69" targetRef="ExclusiveGateway_0qx9eir" />
+    <bpmn:sequenceFlow id="SequenceFlow_1aec4bw" sourceRef="ExclusiveGateway_0qx9eir" targetRef="SubProcess_1urokor" />
+    <bpmn:sequenceFlow id="SequenceFlow_1ofvwts" sourceRef="ExclusiveGateway_0qx9eir" targetRef="SubProcess_03kq0t3" />
+    <bpmn:sequenceFlow id="SequenceFlow_18ndaba" sourceRef="ParallelGateway_1kztdiz" targetRef="IntermediateThrowEvent_0qvudw8" />
+    <bpmn:sequenceFlow id="SequenceFlow_0bwaaex" sourceRef="SubProcess_1urokor" targetRef="ParallelGateway_1kztdiz" />
+    <bpmn:sequenceFlow id="SequenceFlow_09spibb" sourceRef="SubProcess_03kq0t3" targetRef="ParallelGateway_1kztdiz" />
+    <bpmn:sequenceFlow id="SequenceFlow_0uzwmkx" sourceRef="UserTask_185pmm6" targetRef="SubProcess_0xwkhz4" />
+    <bpmn:sequenceFlow id="SequenceFlow_1unejtx" sourceRef="SubProcess_0xwkhz4" targetRef="SubProcess_05te7ni" />
+    <bpmn:sequenceFlow id="SequenceFlow_1g1urlg" sourceRef="SubProcess_05te7ni" targetRef="SubProcess_0dygd69" />
+    <bpmn:intermediateCatchEvent id="IntermediateThrowEvent_0qvudw8">
+      <bpmn:incoming>SequenceFlow_18ndaba</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1qn1vfn</bpmn:outgoing>
+      <bpmn:timerEventDefinition />
+    </bpmn:intermediateCatchEvent>
+    <bpmn:parallelGateway id="ParallelGateway_1kztdiz" name="">
+      <bpmn:incoming>SequenceFlow_0bwaaex</bpmn:incoming>
+      <bpmn:incoming>SequenceFlow_09spibb</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_18ndaba</bpmn:outgoing>
+    </bpmn:parallelGateway>
+    <bpmn:subProcess id="SubProcess_1urokor" name="Pagos">
+      <bpmn:incoming>SequenceFlow_1aec4bw</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0bwaaex</bpmn:outgoing>
+    </bpmn:subProcess>
+    <bpmn:subProcess id="SubProcess_03kq0t3" name="Cobros">
+      <bpmn:incoming>SequenceFlow_1ofvwts</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_09spibb</bpmn:outgoing>
+    </bpmn:subProcess>
+    <bpmn:sequenceFlow id="SequenceFlow_1i64wfw" sourceRef="SubProcess_02ydi7p" targetRef="EndEvent_1la5cww" />
+    <bpmn:subProcess id="SubProcess_02ydi7p" name="Cerar Caja">
+      <bpmn:incoming>SequenceFlow_1qn1vfn</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1i64wfw</bpmn:outgoing>
+    </bpmn:subProcess>
+    <bpmn:endEvent id="EndEvent_1la5cww" name="Caja cerrada">
+      <bpmn:incoming>SequenceFlow_1i64wfw</bpmn:incoming>
+    </bpmn:endEvent>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1fy6lx5">
+      <bpmndi:BPMNShape id="Participant_1fe8ltr_di" bpmnElement="Participant_1fe8ltr">
+        <dc:Bounds x="-13" y="2" width="1366" height="236" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="StartEvent_1lfnelu_di" bpmnElement="StartEvent_1">
+        <dc:Bounds x="37" y="54" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="28" y="90" width="54" height="24" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1kcdmrj_di" bpmnElement="SequenceFlow_1kcdmrj">
+        <di:waypoint xsi:type="dc:Point" x="73" y="72" />
+        <di:waypoint xsi:type="dc:Point" x="113" y="72" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="48" y="57" width="90" height="0" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="IntermediateCatchEvent_0ncjwlu_di" bpmnElement="IntermediateThrowEvent_0qvudw8">
+        <dc:Bounds x="1020" y="54" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="993" y="90" width="90" height="0" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1qn1vfn_di" bpmnElement="SequenceFlow_1qn1vfn">
+        <di:waypoint xsi:type="dc:Point" x="1056" y="72" />
+        <di:waypoint xsi:type="dc:Point" x="1081" y="72" />
+        <di:waypoint xsi:type="dc:Point" x="1081" y="72" />
+        <di:waypoint xsi:type="dc:Point" x="1110" y="72" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1009" y="94" width="57" height="24" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1aec4bw_di" bpmnElement="SequenceFlow_1aec4bw">
+        <di:waypoint xsi:type="dc:Point" x="724" y="72" />
+        <di:waypoint xsi:type="dc:Point" x="780" y="72" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="707" y="57" width="90" height="0" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1ofvwts_di" bpmnElement="SequenceFlow_1ofvwts">
+        <di:waypoint xsi:type="dc:Point" x="699" y="97" />
+        <di:waypoint xsi:type="dc:Point" x="699" y="174" />
+        <di:waypoint xsi:type="dc:Point" x="780" y="174" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="669" y="135.5" width="90" height="0" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="SubProcess_1c7jjuw_di" bpmnElement="UserTask_185pmm6" bioc:stroke="black" bioc:fill="#BBDEFB">
+        <dc:Bounds x="113" y="32" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0uzwmkx_di" bpmnElement="SequenceFlow_0uzwmkx">
+        <di:waypoint xsi:type="dc:Point" x="213" y="72" />
+        <di:waypoint xsi:type="dc:Point" x="251" y="72" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="232" y="51" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="SubProcess_0xwkhz4_di" bpmnElement="SubProcess_0xwkhz4" bioc:stroke="black" bioc:fill="#BBDEFB">
+        <dc:Bounds x="251" y="32" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1unejtx_di" bpmnElement="SequenceFlow_1unejtx">
+        <di:waypoint xsi:type="dc:Point" x="351" y="72" />
+        <di:waypoint xsi:type="dc:Point" x="388" y="72" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="369.5" y="51" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="SubProcess_05te7ni_di" bpmnElement="SubProcess_05te7ni" bioc:stroke="black" bioc:fill="#BBDEFB">
+        <dc:Bounds x="388" y="32" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="SubProcess_0dygd69_di" bpmnElement="SubProcess_0dygd69" bioc:stroke="black" bioc:fill="#BBDEFB">
+        <dc:Bounds x="533" y="32" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1g1urlg_di" bpmnElement="SequenceFlow_1g1urlg">
+        <di:waypoint xsi:type="dc:Point" x="488" y="72" />
+        <di:waypoint xsi:type="dc:Point" x="533" y="72" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="510.5" y="51" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1vjoh0m_di" bpmnElement="SequenceFlow_1vjoh0m">
+        <di:waypoint xsi:type="dc:Point" x="633" y="72" />
+        <di:waypoint xsi:type="dc:Point" x="674" y="72" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="653.5" y="51" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ParallelGateway_0k8213q_di" bpmnElement="ExclusiveGateway_0qx9eir" bioc:stroke="black" bioc:fill="yellow">
+        <dc:Bounds x="674" y="47" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="609" y="25" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="SubProcess_1urokor_di" bpmnElement="SubProcess_1urokor" bioc:stroke="black" bioc:fill="#BBDEFB">
+        <dc:Bounds x="780" y="32" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0bwaaex_di" bpmnElement="SequenceFlow_0bwaaex">
+        <di:waypoint xsi:type="dc:Point" x="880" y="72" />
+        <di:waypoint xsi:type="dc:Point" x="930" y="72" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="905" y="51" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="SubProcess_03kq0t3_di" bpmnElement="SubProcess_03kq0t3" bioc:stroke="black" bioc:fill="#BBDEFB">
+        <dc:Bounds x="780" y="134" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_09spibb_di" bpmnElement="SequenceFlow_09spibb">
+        <di:waypoint xsi:type="dc:Point" x="880" y="174" />
+        <di:waypoint xsi:type="dc:Point" x="955" y="174" />
+        <di:waypoint xsi:type="dc:Point" x="955" y="97" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="917.5" y="153" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ParallelGateway_1kztdiz_di" bpmnElement="ParallelGateway_1kztdiz" bioc:stroke="black" bioc:fill="yellow">
+        <dc:Bounds x="930" y="47" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="865" y="25" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_18ndaba_di" bpmnElement="SequenceFlow_18ndaba">
+        <di:waypoint xsi:type="dc:Point" x="980" y="72" />
+        <di:waypoint xsi:type="dc:Point" x="1020" y="72" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1000" y="51" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="SubProcess_02ydi7p_di" bpmnElement="SubProcess_02ydi7p" bioc:stroke="black" bioc:fill="#BBDEFB">
+        <dc:Bounds x="1110" y="32" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1i64wfw_di" bpmnElement="SequenceFlow_1i64wfw">
+        <di:waypoint xsi:type="dc:Point" x="1210" y="72" />
+        <di:waypoint xsi:type="dc:Point" x="1255" y="72" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1232.5" y="51" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="EndEvent_1la5cww_di" bpmnElement="EndEvent_1la5cww" bioc:stroke="black" bioc:fill="red">
+        <dc:Bounds x="1255" y="54" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1241" y="101" width="63" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

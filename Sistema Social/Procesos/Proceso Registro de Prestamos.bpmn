@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="1.8.2">
+  <bpmn:collaboration id="Collaboration_014v9b3">
+    <bpmn:participant id="Participant_0qweyv3" name="Entradas por Prestamos" processRef="Process_1" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_1" isExecutable="false">
+    <bpmn:laneSet />
+    <bpmn:startEvent id="StartEvent_05oldy7" name="Entrada de Dinero">
+      <bpmn:outgoing>SequenceFlow_0pc1px2</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_13s8a4i" sourceRef="UserTask_14x7d1h" targetRef="EndEvent_0cimqan" />
+    <bpmn:sequenceFlow id="SequenceFlow_0i6n3ab" sourceRef="UserTask_0zzlbcw" targetRef="UserTask_0vpz8bl" />
+    <bpmn:sequenceFlow id="SequenceFlow_0zxb0to" sourceRef="UserTask_0t8ip06" targetRef="UserTask_0zzlbcw" />
+    <bpmn:sequenceFlow id="SequenceFlow_0pc1px2" sourceRef="StartEvent_05oldy7" targetRef="UserTask_0t8ip06" />
+    <bpmn:endEvent id="EndEvent_0cimqan" name="Prestamo Concluido">
+      <bpmn:incoming>SequenceFlow_13s8a4i</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:userTask id="UserTask_0t8ip06" name="Crear un nuevo Prestamo">
+      <bpmn:incoming>SequenceFlow_0pc1px2</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0zxb0to</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="UserTask_0zzlbcw" name="Informar el Contacto">
+      <bpmn:incoming>SequenceFlow_0zxb0to</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0i6n3ab</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="UserTask_14x7d1h" name="Informar la Cuenta del Prestamo">
+      <bpmn:incoming>SequenceFlow_18xlt89</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_13s8a4i</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="UserTask_0vpz8bl" name="Informar el Caja o Banco">
+      <bpmn:incoming>SequenceFlow_0i6n3ab</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_18xlt89</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="SequenceFlow_18xlt89" sourceRef="UserTask_0vpz8bl" targetRef="UserTask_14x7d1h" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_014v9b3">
+      <bpmndi:BPMNShape id="Participant_0qweyv3_di" bpmnElement="Participant_0qweyv3">
+        <dc:Bounds x="1" y="1" width="838" height="175" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="UserTask_14x7d1h_di" bpmnElement="UserTask_14x7d1h" bioc:stroke="black" bioc:fill="#BBDEFB">
+        <dc:Bounds x="585" y="21" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_0cimqan_di" bpmnElement="EndEvent_0cimqan" bioc:stroke="black" bioc:fill="red">
+        <dc:Bounds x="735" y="43" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="729" y="89" width="48" height="24" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_13s8a4i_di" bpmnElement="SequenceFlow_13s8a4i">
+        <di:waypoint xsi:type="dc:Point" x="685" y="61" />
+        <di:waypoint xsi:type="dc:Point" x="735" y="61" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="665" y="40" width="90" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="UserTask_0t8ip06_di" bpmnElement="UserTask_0t8ip06" bioc:stroke="black" bioc:fill="#BBDEFB">
+        <dc:Bounds x="161" y="21" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="StartEvent_05oldy7_di" bpmnElement="StartEvent_05oldy7" bioc:stroke="black" bioc:fill="green">
+        <dc:Bounds x="72" y="43" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="47" y="85" width="88" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0pc1px2_di" bpmnElement="SequenceFlow_0pc1px2">
+        <di:waypoint xsi:type="dc:Point" x="108" y="61" />
+        <di:waypoint xsi:type="dc:Point" x="161" y="61" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="89.5" y="40" width="90" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="UserTask_0zzlbcw_di" bpmnElement="UserTask_0zzlbcw" bioc:stroke="black" bioc:fill="#BBDEFB">
+        <dc:Bounds x="296" y="21" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0zxb0to_di" bpmnElement="SequenceFlow_0zxb0to">
+        <di:waypoint xsi:type="dc:Point" x="261" y="61" />
+        <di:waypoint xsi:type="dc:Point" x="296" y="61" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="233.5" y="40" width="90" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0i6n3ab_di" bpmnElement="SequenceFlow_0i6n3ab">
+        <di:waypoint xsi:type="dc:Point" x="396" y="61" />
+        <di:waypoint xsi:type="dc:Point" x="441" y="61" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="418.5" y="40" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="UserTask_0vpz8bl_di" bpmnElement="UserTask_0vpz8bl" bioc:stroke="black" bioc:fill="#BBDEFB">
+        <dc:Bounds x="441" y="21" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_18xlt89_di" bpmnElement="SequenceFlow_18xlt89">
+        <di:waypoint xsi:type="dc:Point" x="541" y="61" />
+        <di:waypoint xsi:type="dc:Point" x="585" y="61" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="563" y="40" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
