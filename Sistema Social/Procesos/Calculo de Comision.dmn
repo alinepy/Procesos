@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" id="definitions_1a559wa" name="definitions" namespace="http://camunda.org/schema/1.0/dmn">
+  <decision id="decision" name="Reglas de Comisiones">
+    <decisionTable id="decisionTable">
+      <input id="input1" label="Producto">
+        <inputExpression id="inputExpression1" typeRef="string">        <text></text>
+</inputExpression>
+        <inputValues id="UnaryTests_0jyugq8">        <text><![CDATA["Fotocopias","Encuadernacion","Recarga de Tonner","Gomas de Sellos","Impresiones","Recargas de Cartuchos","Artcell"]]></text>
+</inputValues>
+      </input>
+      <input id="InputClause_12y0m7j" label="Cliente">
+        <inputExpression id="LiteralExpression_0i5jnyq" typeRef="string" />
+        <inputValues id="UnaryTests_0fn7ay1">        <text><![CDATA["Artpel"]]></text>
+</inputValues>
+      </input>
+      <input id="InputClause_0m1k9i5" label="Vendedor">
+        <inputExpression id="LiteralExpression_0bxc0t6" typeRef="string" />
+      </input>
+      <output id="output1" label="Comisionista" name="" typeRef="string" />
+      <output id="OutputClause_07mvkn0" label="Valor Comisión" typeRef="string" />
+      <rule id="row-795989824-1">
+        <description></description>
+        <inputEntry id="UnaryTests_0f5urse">        <text><![CDATA["Fotocopias", "Encuadernacion", "Impresiones"]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_0zmpe8x">        <text><![CDATA[not("Artpel")]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_1fw3ief">        <text></text>
+</inputEntry>
+        <outputEntry id="LiteralExpression_1kahk91">        <text><![CDATA["Raphael"]]></text>
+</outputEntry>
+        <outputEntry id="LiteralExpression_1ahh2tq">        <text><![CDATA["1%"]]></text>
+</outputEntry>
+      </rule>
+      <rule id="row-795989824-4">
+        <inputEntry id="UnaryTests_1km0snc">        <text><![CDATA["Fotocopias", "Encuadernaciones", "Impresiones"]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_0j8tr8n">        <text><![CDATA[not("Artpel")]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_1kf7vhu">        <text></text>
+</inputEntry>
+        <outputEntry id="LiteralExpression_0cju4jo">        <text><![CDATA["Norma"]]></text>
+</outputEntry>
+        <outputEntry id="LiteralExpression_1a5glka">        <text><![CDATA["1.5%"]]></text>
+</outputEntry>
+      </rule>
+      <rule id="row-795989824-5">
+        <inputEntry id="UnaryTests_1e37syq">        <text><![CDATA["Fotocopias", "Encuadernacion", "Impresiones"]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_0i39vmb">        <text><![CDATA[not("Artpel")]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_0wrqher">        <text></text>
+</inputEntry>
+        <outputEntry id="LiteralExpression_09t1a46">        <text><![CDATA["Olinda"]]></text>
+</outputEntry>
+        <outputEntry id="LiteralExpression_1f0ypf4">        <text><![CDATA["1%"]]></text>
+</outputEntry>
+      </rule>
+      <rule id="row-795989824-2">
+        <inputEntry id="UnaryTests_0339sk6">        <text><![CDATA["Recargas de Cartuchos", "Recargas de Tonner"]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_1okw9c9">        <text><![CDATA[not("Artpel")]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_1o6p431">        <text></text>
+</inputEntry>
+        <outputEntry id="LiteralExpression_0kvh5m7">        <text><![CDATA["Raphael"]]></text>
+</outputEntry>
+        <outputEntry id="LiteralExpression_0nf32il">        <text><![CDATA["1%"]]></text>
+</outputEntry>
+      </rule>
+      <rule id="row-795989824-3">
+        <inputEntry id="UnaryTests_190qrfw">        <text><![CDATA["Gomas de Sellos"]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_11rtl55">        <text><![CDATA[not("Artpel")]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_0hvbq13">        <text></text>
+</inputEntry>
+        <outputEntry id="LiteralExpression_13xz70k">        <text><![CDATA["Norma"]]></text>
+</outputEntry>
+        <outputEntry id="LiteralExpression_04rreok">        <text><![CDATA["1%"]]></text>
+</outputEntry>
+      </rule>
+      <rule id="row-795989824-6">
+        <inputEntry id="UnaryTests_00mjwga">        <text><![CDATA["Artcell"]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_1bbwgoc">        <text></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_09f65p4">        <text></text>
+</inputEntry>
+        <outputEntry id="LiteralExpression_0i0gcy8">        <text><![CDATA["Juliano"]]></text>
+</outputEntry>
+        <outputEntry id="LiteralExpression_1n1niwo">        <text><![CDATA["50% Margen Bruta"]]></text>
+</outputEntry>
+      </rule>
+      <rule id="row-795989824-7">
+        <inputEntry id="UnaryTests_0bs9vv8">        <text><![CDATA["Artcell"]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_1v8xlcs">        <text><![CDATA[not("Artpel")]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_02fhdxy">        <text><![CDATA[not("Juliano")]]></text>
+</inputEntry>
+        <outputEntry id="LiteralExpression_12rad6b">        <text><![CDATA["Vendedor"]]></text>
+</outputEntry>
+        <outputEntry id="LiteralExpression_0hspkn5">        <text><![CDATA["1%"]]></text>
+</outputEntry>
+      </rule>
+      <rule id="row-795989824-8">
+        <inputEntry id="UnaryTests_06il49d">        <text></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_1w8y8ox">        <text><![CDATA["Artpel"]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_0nizbah">        <text></text>
+</inputEntry>
+        <outputEntry id="LiteralExpression_0peqyas">        <text></text>
+</outputEntry>
+        <outputEntry id="LiteralExpression_1xkv9pj">        <text><![CDATA["Sin Comision"]]></text>
+</outputEntry>
+      </rule>
+      <rule id="row-795989824-9">
+        <inputEntry id="UnaryTests_1rssijm">        <text></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_1r6mpmo">        <text><![CDATA[not("Artpel")]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_1dspi4f">        <text></text>
+</inputEntry>
+        <outputEntry id="LiteralExpression_1sdfg9z">        <text><![CDATA["Leandrina"]]></text>
+</outputEntry>
+        <outputEntry id="LiteralExpression_0ukhuef">        <text><![CDATA["0,1%"]]></text>
+</outputEntry>
+      </rule>
+      <rule id="row-795989824-10">
+        <inputEntry id="UnaryTests_1ahhzwi">        <text></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_0qtqzv2">        <text><![CDATA[not("Artpel")]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_0qbwjms">        <text></text>
+</inputEntry>
+        <outputEntry id="LiteralExpression_17gjmn0">        <text><![CDATA["Silvane"]]></text>
+</outputEntry>
+        <outputEntry id="LiteralExpression_1wvqb9o">        <text><![CDATA["0.1%"]]></text>
+</outputEntry>
+      </rule>
+      <rule id="row-795989824-11">
+        <inputEntry id="UnaryTests_077fpm0">        <text></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_0h3sylk">        <text><![CDATA[not("Artpel")]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_00130l6">        <text></text>
+</inputEntry>
+        <outputEntry id="LiteralExpression_0i75x5g">        <text><![CDATA["Rutt"]]></text>
+</outputEntry>
+        <outputEntry id="LiteralExpression_1na1y1j">        <text><![CDATA["0.1%"]]></text>
+</outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+</definitions>

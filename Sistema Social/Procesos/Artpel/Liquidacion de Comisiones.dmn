@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/1.0" xmlns:camunda="http://camunda.org/schema/1.0/dmn" id="definitions_1mbzl82" name="definitions" namespace="http://camunda.org/schema/1.0/dmn">
+  <decision id="decision" name="Liquidación de Comisiones">
+    <extensionElements>
+      <biodi:bounds x="200" y="200" width="180" height="80" />
+    </extensionElements>
+    <decisionTable id="decisionTable">
+      <input id="input1" label="Vendedor" camunda:inputVariable="">
+        <inputExpression id="inputExpression1" typeRef="string">        <text></text>
+</inputExpression>
+        <inputValues id="UnaryTests_0fy33d3">        <text><![CDATA["Daiana","Charmane","Emillyn","Juliano"]]></text>
+</inputValues>
+      </input>
+      <input id="InputClause_1pmxssc" label="Meta Lograda">
+        <inputExpression id="LiteralExpression_17d1o7i" typeRef="boolean" />
+      </input>
+      <output id="output1" label="" name="" typeRef="string">
+        <outputValues id="UnaryTests_18356j3">        <text><![CDATA["Bonificación 50% sobre comisiones","Sin bonificación"]]></text>
+</outputValues>
+      </output>
+      <rule id="row-795989824-12">
+        <inputEntry id="UnaryTests_0cmbvau">        <text><![CDATA["Daiana"]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_036th3l">        <text>true</text>
+</inputEntry>
+        <outputEntry id="LiteralExpression_1hoa4df">        <text><![CDATA["Bonificación 50% sobre comisiones"]]></text>
+</outputEntry>
+      </rule>
+      <rule id="row-795989824-13">
+        <inputEntry id="UnaryTests_187bnrr">        <text><![CDATA["Charmane"]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_1igo9he">        <text>true</text>
+</inputEntry>
+        <outputEntry id="LiteralExpression_0ruhffr">        <text><![CDATA["Bonificación 50% sobre comisiones"]]></text>
+</outputEntry>
+      </rule>
+      <rule id="row-795989824-14">
+        <inputEntry id="UnaryTests_0c45al6">        <text><![CDATA["Emillyn"]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_1jq6y0y">        <text>true</text>
+</inputEntry>
+        <outputEntry id="LiteralExpression_0kp128o">        <text><![CDATA["Bonificación 50% sobre comisiones"]]></text>
+</outputEntry>
+      </rule>
+      <rule id="row-795989824-15">
+        <inputEntry id="UnaryTests_1mvz4sn">        <text><![CDATA["Juliano"]]></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_0k9u62l">        <text>true</text>
+</inputEntry>
+        <outputEntry id="LiteralExpression_192byje">        <text><![CDATA["Bonificación 50% sobre comisiones"]]></text>
+</outputEntry>
+      </rule>
+      <rule id="row-795989824-16">
+        <inputEntry id="UnaryTests_0mt87rw">        <text></text>
+</inputEntry>
+        <inputEntry id="UnaryTests_1520v6j">        <text>false</text>
+</inputEntry>
+        <outputEntry id="LiteralExpression_0x1mwfu">        <text><![CDATA["Sin bonificación"]]></text>
+</outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+</definitions>
