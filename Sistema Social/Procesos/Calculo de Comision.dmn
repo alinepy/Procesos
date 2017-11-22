@@ -88,7 +88,7 @@
 </inputEntry>
         <outputEntry id="LiteralExpression_0i0gcy8">        <text><![CDATA["Juliano"]]></text>
 </outputEntry>
-        <outputEntry id="LiteralExpression_1n1niwo">        <text><![CDATA["50% Margen Bruta"]]></text>
+        <outputEntry id="LiteralExpression_1n1niwo">        <text><![CDATA["50% Margen Liquida"]]></text>
 </outputEntry>
       </rule>
       <rule id="row-795989824-7">
