@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="1.8.2">
+  <bpmn:collaboration id="Collaboration_014v9b3">
+    <bpmn:participant id="Participant_0qweyv3" name="Liquidación de Comisiones Externas " processRef="Process_1" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_1" isExecutable="false">
+    <bpmn:laneSet />
+    <bpmn:sequenceFlow id="SequenceFlow_0d3ytcl" sourceRef="UserTask_0emde2i" targetRef="UserTask_13gyx27" />
+    <bpmn:startEvent id="StartEvent_05oldy7" name="Liquidación de Comisiones">
+      <bpmn:outgoing>SequenceFlow_0yhb9qx</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_0yhb9qx" sourceRef="StartEvent_05oldy7" targetRef="UserTask_0emde2i" />
+    <bpmn:userTask id="UserTask_0emde2i" name="Liquidar Comisiones">
+      <bpmn:incoming>SequenceFlow_0yhb9qx</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0d3ytcl</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="SequenceFlow_0ssg31m" sourceRef="UserTask_13gyx27" targetRef="UserTask_11vvbky" />
+    <bpmn:userTask id="UserTask_13gyx27" name="Facturar Comisiones">
+      <bpmn:incoming>SequenceFlow_0d3ytcl</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0ssg31m</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="UserTask_11vvbky" name="Pagar Factura">
+      <bpmn:incoming>SequenceFlow_0ssg31m</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_12hikx5</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="SequenceFlow_12hikx5" sourceRef="UserTask_11vvbky" targetRef="EndEvent_0cimqan" />
+    <bpmn:endEvent id="EndEvent_0cimqan" name="Comisiones Concluidas">
+      <bpmn:incoming>SequenceFlow_12hikx5</bpmn:incoming>
+    </bpmn:endEvent>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_014v9b3">
+      <bpmndi:BPMNShape id="Participant_0qweyv3_di" bpmnElement="Participant_0qweyv3">
+        <dc:Bounds x="11" y="8" width="673" height="132" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_0cimqan_di" bpmnElement="EndEvent_0cimqan" bioc:stroke="black" bioc:fill="red">
+        <dc:Bounds x="602" y="50" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="592" y="96" width="57" height="24" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="StartEvent_05oldy7_di" bpmnElement="StartEvent_05oldy7" bioc:stroke="black" bioc:fill="green">
+        <dc:Bounds x="73" y="50" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="58" y="92" width="69" height="24" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="UserTask_0emde2i_di" bpmnElement="UserTask_0emde2i" bioc:stroke="black" bioc:fill="#BBDEFB">
+        <dc:Bounds x="153" y="28" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0d3ytcl_di" bpmnElement="SequenceFlow_0d3ytcl">
+        <di:waypoint xsi:type="dc:Point" x="253" y="68" />
+        <di:waypoint xsi:type="dc:Point" x="305" y="68" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="279" y="47" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="UserTask_13gyx27_di" bpmnElement="UserTask_13gyx27" bioc:stroke="black" bioc:fill="#BBDEFB">
+        <dc:Bounds x="305" y="28" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0ssg31m_di" bpmnElement="SequenceFlow_0ssg31m">
+        <di:waypoint xsi:type="dc:Point" x="405" y="68" />
+        <di:waypoint xsi:type="dc:Point" x="454" y="68" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="429.5" y="47" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="UserTask_11vvbky_di" bpmnElement="UserTask_11vvbky" bioc:stroke="black" bioc:fill="#BBDEFB">
+        <dc:Bounds x="454" y="28" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0yhb9qx_di" bpmnElement="SequenceFlow_0yhb9qx">
+        <di:waypoint xsi:type="dc:Point" x="109" y="68" />
+        <di:waypoint xsi:type="dc:Point" x="153" y="68" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="131" y="47" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_12hikx5_di" bpmnElement="SequenceFlow_12hikx5">
+        <di:waypoint xsi:type="dc:Point" x="554" y="68" />
+        <di:waypoint xsi:type="dc:Point" x="602" y="68" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="578" y="47" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

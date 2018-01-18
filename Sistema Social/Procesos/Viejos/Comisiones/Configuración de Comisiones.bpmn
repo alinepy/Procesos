@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="1.8.2">
+  <bpmn:collaboration id="Collaboration_0ahi5va">
+    <bpmn:participant id="Participant_1awrq67" name="Configuración de Comisiones" processRef="Process_1" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_1" isExecutable="false">
+    <bpmn:startEvent id="StartEvent_1wnxi6k" name="Tipos de Comisiones">
+      <bpmn:outgoing>SequenceFlow_0os3zuo</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_0os3zuo" sourceRef="StartEvent_1wnxi6k" targetRef="UserTask_1wki79l" />
+    <bpmn:sequenceFlow id="SequenceFlow_1knzr4l" sourceRef="UserTask_1wki79l" targetRef="EndEvent_1k9pqql" />
+    <bpmn:endEvent id="EndEvent_1k9pqql" name="Cnfiguración Concluida">
+      <bpmn:incoming>SequenceFlow_1knzr4l</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:userTask id="UserTask_1wki79l" name="Crear Nuevo Tipo de Comision">
+      <bpmn:incoming>SequenceFlow_0os3zuo</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1knzr4l</bpmn:outgoing>
+    </bpmn:userTask>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_0ahi5va">
+      <bpmndi:BPMNShape id="Participant_1awrq67_di" bpmnElement="Participant_1awrq67">
+        <dc:Bounds x="-785" y="82" width="395" height="148" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="StartEvent_1wnxi6k_di" bpmnElement="StartEvent_1wnxi6k" bioc:stroke="black" bioc:fill="green">
+        <dc:Bounds x="-726" y="137" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-735" y="179" width="57" height="24" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_1k9pqql_di" bpmnElement="EndEvent_1k9pqql" bioc:stroke="black" bioc:fill="red">
+        <dc:Bounds x="-474" y="137" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-486" y="183" width="61" height="24" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="UserTask_1wki79l_di" bpmnElement="UserTask_1wki79l" bioc:stroke="black" bioc:fill="#BBDEFB">
+        <dc:Bounds x="-623" y="115" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0os3zuo_di" bpmnElement="SequenceFlow_0os3zuo">
+        <di:waypoint xsi:type="dc:Point" x="-690" y="155" />
+        <di:waypoint xsi:type="dc:Point" x="-623" y="155" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-701.5" y="134" width="90" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1knzr4l_di" bpmnElement="SequenceFlow_1knzr4l">
+        <di:waypoint xsi:type="dc:Point" x="-523" y="155" />
+        <di:waypoint xsi:type="dc:Point" x="-474" y="155" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-498.5" y="134" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
